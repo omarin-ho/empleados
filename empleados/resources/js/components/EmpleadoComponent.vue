@@ -293,6 +293,7 @@
             editar(item){
                 this.empleado = item;
                 this.btnEditar = true;
+                this.consultarWebService();
             },
             /**
              * funcion para abrir modal y preguntar si se requiere eliminar
