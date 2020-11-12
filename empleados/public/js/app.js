@@ -2213,6 +2213,7 @@ __webpack_require__.r(__webpack_exports__);
     editar: function editar(item) {
       this.empleado = item;
       this.btnEditar = true;
+      this.consultarWebService();
     },
 
     /**
@@ -2336,6 +2337,10 @@ __webpack_require__.r(__webpack_exports__);
       this.tipoCambio = this.$refs.myTestField.value;
       this.empleado.tipoCambio = this.tipoCambio;
     },
+
+    /***
+     * Caluclar proyecion
+     **/
     calcularProyeccion: function calcularProyeccion(empleado) {
       var totalPesos = 0;
       var totalDolares = 0;
@@ -2347,6 +2352,21 @@ __webpack_require__.r(__webpack_exports__);
 
       this.ProyeccionPesos = totalPesos;
       this.ProyeccionDolares = totalDolares;
+    },
+
+    /**
+     * Solo numeros
+     * @param evt
+     * @returns {boolean}
+     */
+    onlyNumber: function onlyNumber($event) {
+      //console.log($event.keyCode); //keyCodes value
+      var keyCode = $event.keyCode ? $event.keyCode : $event.which;
+
+      if ((keyCode < 48 || keyCode > 57) && keyCode !== 46) {
+        // 46 is dot
+        $event.preventDefault();
+      }
     }
   },
   created: function created() {
@@ -38089,7 +38109,7 @@ var render = function() {
                                 type: "text",
                                 placeholder: "Nombre",
                                 required: "",
-                                pattern: "[^ñ-Ñ]"
+                                pattern: "[A-Za-z0-9_-]{1,15}"
                               },
                               domProps: { value: _vm.empleado.nombre },
                               on: {
@@ -38155,13 +38175,15 @@ var render = function() {
                                   type: "number",
                                   min: "0",
                                   placeholder: "Salario dolares",
-                                  required: "",
-                                  id: "input"
+                                  required: ""
                                 },
                                 domProps: {
                                   value: _vm.empleado.salarioDolares
                                 },
                                 on: {
+                                  keypress: function($event) {
+                                    return _vm.onlyNumber($event)
+                                  },
                                   input: function($event) {
                                     if ($event.target.composing) {
                                       return
@@ -38827,11 +38849,14 @@ var render = function() {
                       ],
                       staticClass: "form-control",
                       attrs: {
-                        type: "text",
+                        type: "number",
                         placeholder: "Porcieto de aumento mensual"
                       },
                       domProps: { value: _vm.porciento },
                       on: {
+                        keypress: function($event) {
+                          return _vm.onlyNumber($event)
+                        },
                         input: function($event) {
                           if ($event.target.composing) {
                             return

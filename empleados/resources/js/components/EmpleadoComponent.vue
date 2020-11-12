@@ -17,14 +17,14 @@
                                     <input type ="text" v-model="empleado.codigo" placeholder="Codigo" class="form-control" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type ="text" v-model="empleado.nombre" placeholder="Nombre" class="form-control"required pattern="[^ñ-Ñ]">
+                                    <input type ="text" v-model="empleado.nombre" placeholder="Nombre" class="form-control"required pattern="[A-Za-z0-9_-]{1,15}">
                                 </div>
                                 <div class="form-group">
                                     <input readonly type ="text" v-model="empleado.tipoCambio" placeholder="Tipo de cambio" class="form-control">
                                 </div>
                                 <div class="form-inline">
                                     <div class="form-group mb-2">
-                                        <input type ="number"  min="0" v-model="empleado.salarioDolares" placeholder="Salario dolares" class="form-control" required id="input">
+                                        <input type ="number"  min="0" v-model="empleado.salarioDolares" placeholder="Salario dolares" class="form-control" required @keypress="onlyNumber($event)">
                                         <button class="btn btn-info" @click="calcularPesos()">A Pesos</button>
                                     </div>
                                 </div>
@@ -170,7 +170,7 @@
                                 Activo: {{(empleado.activo == true)?'SI':'NO'}}
                             </li>
                             <div class="card">
-                                Porcentaje: <input type ="text" v-model="porciento" placeholder="Porcieto de aumento mensual" class="form-control">
+                                Porcentaje: <input type ="number" v-model="porciento" placeholder="Porcieto de aumento mensual" class="form-control" @keypress="onlyNumber($event)">
                                 <button class="btn badge-danger" @click="calcularProyeccion(empleado)">
                                     Calcular
                                 </button>
@@ -395,6 +395,9 @@
                 this.tipoCambio = this.$refs.myTestField.value
                 this.empleado.tipoCambio = this.tipoCambio;
             },
+            /***
+             * Caluclar proyecion
+             **/
             calcularProyeccion(empleado){
                 var totalPesos = 0;
                 var totalDolares = 0;
@@ -405,6 +408,18 @@
                 this.ProyeccionPesos = totalPesos;
                 this.ProyeccionDolares = totalDolares;
             },
+            /**
+             * Solo numeros
+             * @param evt
+             * @returns {boolean}
+             */
+            onlyNumber ($event) {
+                //console.log($event.keyCode); //keyCodes value
+                let keyCode = ($event.keyCode ? $event.keyCode : $event.which);
+                if ((keyCode < 48 || keyCode > 57) && keyCode !== 46) { // 46 is dot
+                    $event.preventDefault();
+                }
+            }
         },
         created() {
             $('.toast').toast({delay: 3000 });
