@@ -11,42 +11,50 @@
             <div class="col-12">
                 <div class="card" v-if="btnEditar">
                     <div class="card-header">Agregar Empleados</div>
-                    <div class="card-body" align="center">
+                    <div class="card-body">
                             <form @submit.prevent="guardar">
                                 <div class="form-group">
-                                    <input type ="text" v-model="empleado.codigo" placeholder="Codigo" class="form-control" required>
+                                    <label>Codigo</label>
+                                    <input type ="text" v-model="empleado.codigo" placeholder="Codigo" class="form-control" required @keypress="validarLetra($event)"
+                                    >
                                 </div>
                                 <div class="form-group">
-                                    <input type ="text" v-model="empleado.nombre" placeholder="Nombre" class="form-control"required pattern="[A-Za-z0-9_-]{1,15}">
+                                    <label>Nombre</label>
+                                    <input type ="text" v-model="empleado.nombre" placeholder="Nombre" class="form-control"required @keypress="validarLetra($event)">
                                 </div>
                                 <div class="form-group">
+                                    <label>Tipo de cambio</label>
                                     <input readonly type ="text" v-model="empleado.tipoCambio" placeholder="Tipo de cambio" class="form-control">
                                 </div>
-                                <div class="form-inline">
-                                    <div class="form-group mb-2">
-                                        <input type ="number"  min="0" v-model="empleado.salarioDolares" placeholder="Salario dolares" class="form-control" required @keypress="onlyNumber($event)">
-                                        <button class="btn btn-info" @click="calcularPesos()">A Pesos</button>
-                                    </div>
+                                <div class="form-group">
+                                    <label>Salario en dolares</label>
+                                    <input type ="number"  min="0" v-model="empleado.salarioDolares" placeholder="Salario dolares" class="form-control" required @keypress="onlyNumber($event)" @keyup="calcularPesos()">
                                 </div>
                                 <div class="form-group">
+                                    <label>Salario en pesos</label>
                                     <input type ="number" min="0" v-model="empleado.salarioPesos" placeholder="Salario pesos" class="form-control" readonly>
                                 </div>
                                 <div class="form-group">
-                                    <input type ="text" v-model="empleado.direccion" placeholder="Direccion" class="form-control"required>
+                                    <label>Direccion</label>
+                                    <input type ="text" v-model="empleado.direccion" placeholder="Direccion" class="form-control"required @keypress="validarLetra($event)">
                                 </div>
                                 <div class="form-group">
-                                    <input type ="text" v-model="empleado.estado" placeholder="Estado" class="form-control"required>
+                                    <label>Estado</label>
+                                    <input type ="text" v-model="empleado.estado" placeholder="Estado" class="form-control"required @keypress="validarLetra($event)">
                                 </div>
                                 <div class="form-group">
-                                    <input type ="text" v-model="empleado.ciudad" placeholder="Ciudad" class="form-control"required>
+                                    <label>Ciudad</label>
+                                    <input type ="text" v-model="empleado.ciudad" placeholder="Ciudad" class="form-control"required @keypress="validarLetra($event)">
                                 </div>
                                 <div class="form-group">
-                                    <input type ="text" v-model="empleado.telefono" placeholder="Telefono" class="form-control"required>
+                                    <label>Telefono</label>
+                                    <input type ="text" v-model="empleado.telefono" placeholder="Telefono" class="form-control"required @keypress="validarLetra($event)">
                                 </div>
                                 <div class="form-group">
-                                    <input type ="email" v-model="empleado.correo" placeholder="Correo" class="form-control"required >
+                                    <label>Correo</label>
+                                    <input type ="email" v-model="empleado.correo" placeholder="Correo" class="form-control"required @keypress="validarLetra($event)">
                                 </div>
-                                <div class="row" align="center">
+                                <div class="form-group" align="center">
                                     <button class="btn btn-primary btn-group" type="submit">Guardar</button>
                                     <button class="btn btn-danger btn-group" @click="cancelarEdicion">Cancelar</button>
                                 </div>
@@ -72,7 +80,7 @@
                                         <th scope="col">Salario en pesos</th>
                                         <th scope="col">Correo</th>
                                         <th scope="col">Activo</th>
-                                        <th scope="col"><button class="btn btn-success" @click="agregar">Agregar</button></th>
+                                        <th scope="col"><button class="btn btn-success" @click="agregar">Agregar Empleado</button></th>
                                     </tr>
                                     <tr v-for="(item, index) in lstEmpleados" :key="index">
                                         <td>{{item.codigo}}</td>
@@ -84,11 +92,11 @@
                                         <td>
                                             <div class="custom-control custom-switch">
                                                 <input type="checkbox" v-model="item.activo" class="custom-control-input" :id="index" @change="cambiarEstatus(item)">
-                                                <label class="custom-control-label" :for="index" >Activo{{item.id}}</label>
+                                                <label class="custom-control-label" :for="index" >{{(item.activo == true)?'Desactivar':'Activar'}}</label>
                                             </div>
-                                            <button class="btn btn-sm btn-info" @click="detalle(item)">O</button>
-                                            <button class="btn btn-sm btn-warning" @click="editar(item)">/</button>
-                                            <button class="btn btn-sm btn-danger" @click="eliminar(item)">X</button>
+                                            <button class="btn btn-sm btn-info" title="Detalle del empleado" @click="detalle(item)">Ver</button>
+                                            <button class="btn btn-sm btn-warning" title="Editar empleado" @click="editar(item)">Editar</button>
+                                            <button class="btn btn-sm btn-danger" title="Eliminar empleado" @click="eliminar(item)">Eliminar</button>
                                         </td>
                                     </tr>
                                 </table>
@@ -389,15 +397,16 @@
                 this.empleado.salarioPesos = parseInt(this.tipoCambio) * parseFloat(this.empleado.salarioDolares);
             },
             /**
-             * Cambiar valor
+             * funcion para Cambiar valor
              */
             cambiarValor(){
                 this.tipoCambio = this.$refs.myTestField.value
                 this.empleado.tipoCambio = this.tipoCambio;
             },
-            /***
-             * Caluclar proyecion
-             **/
+            /**
+             * CAluclar Proyecion
+             * @param empleado
+             */
             calcularProyeccion(empleado){
                 var totalPesos = 0;
                 var totalDolares = 0;
@@ -409,14 +418,25 @@
                 this.ProyeccionDolares = totalDolares;
             },
             /**
-             * Solo numeros
+             * Funcion para adminitir Solo numeros
              * @param evt
              * @returns {boolean}
              */
             onlyNumber ($event) {
-                //console.log($event.keyCode); //keyCodes value
                 let keyCode = ($event.keyCode ? $event.keyCode : $event.which);
-                if ((keyCode < 48 || keyCode > 57) && keyCode !== 46) { // 46 is dot
+                if ((keyCode < 48 || keyCode > 57) && keyCode !== 46) {
+                    $event.preventDefault();
+                }
+            },
+            /**
+             * Funcion para validar caracteres especiales
+             * @param $event
+             */
+            validarLetra: function ($event){
+                console.log("Entre");
+                if(($event.charCode >= 48 && $event.charCode <= 57) ||($event.charCode >= 65 && $event.charCode <= 90) ||($event.charCode >= 97 && $event.charCode <= 122)){
+                    return true
+                }else{
                     $event.preventDefault();
                 }
             }

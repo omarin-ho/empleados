@@ -24,7 +24,19 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 
+/**
+ * Funciones basicas de crud
+ */
 Route::resource('/empleados', EmpleadoController::class);
+/**
+ * activar o desactivar empleados
+ */
 Route::post('/empleados/activar', [EmpleadoController::class, 'cambiarEstatus']);
+/**
+ * guardar empleado
+ */
 Route::post('/empleados/guardar', [EmpleadoController::class, 'guardar']);
+/**
+ * verificar codigo
+ */
 Route::post('/empleados/codigo', [EmpleadoController::class, 'verificarCodigo']);

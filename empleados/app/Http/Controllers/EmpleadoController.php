@@ -87,7 +87,7 @@ class EmpleadoController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Funcion para editar datos mediante id
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -98,7 +98,7 @@ class EmpleadoController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Funcion para editar mediante peticion post
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -118,9 +118,6 @@ class EmpleadoController extends Controller
     public function destroy($id){
         try{
             return Empleados::where('id',$id)->update(['eliminado' => true]);
-            //$empleado = new EmpleadoModel();
-            //$data = $empleado->eliminarEmpleado($id);
-            //return $data;
         }catch (\Exception $e){
             return false;
         }
@@ -140,9 +137,7 @@ class EmpleadoController extends Controller
      * @return bool
      */
     public function verificarCodigo(Request $request){
-        dd($request->codigo);
         $hay = Empleados::where('codigo',$request->codigo)->get();
-        dd($hay);
         if($hay != null){
             return true;
         }else{
