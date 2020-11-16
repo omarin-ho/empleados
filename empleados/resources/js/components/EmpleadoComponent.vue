@@ -338,7 +338,7 @@
                         this.mensaje.header='Exito';
                         break;
                     case 500:
-                        this.mensaje.header='Exito';
+                        this.mensaje.header='Error';
                         break;
                 }
                 this.mensaje.body=mensaje;

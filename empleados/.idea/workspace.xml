@@ -3,14 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0684030f-c2f3-4691-980b-ca817c0b6d94" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EmpleadoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EmpleadoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/EmpleadoComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/EmpleadoComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/navigation-dropdown.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/navigation-dropdown.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,7 +176,7 @@
       <updated>1605205141918</updated>
       <workItem from="1605205143144" duration="12672000" />
       <workItem from="1605536597708" duration="1856000" />
-      <workItem from="1605540859839" duration="4393000" />
+      <workItem from="1605540859839" duration="5198000" />
     </task>
     <task id="LOCAL-00001" summary="Crud Empleado">
       <created>1605216750340</created>
@@ -206,7 +199,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605217843680</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Correcciones">
+      <created>1605546185873</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1605546185873</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,21 +214,22 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Crud Empleado" />
-    <option name="LAST_COMMIT_MESSAGE" value="Crud Empleado" />
+    <MESSAGE value="Correcciones" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correcciones" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1691" y="23" key="CommitChangelistDialog2" timestamp="1605217842492">
+    <state x="1691" y="23" key="CommitChangelistDialog2" timestamp="1605546185104">
       <screen x="1440" y="23" width="1366" height="745" />
     </state>
-    <state x="1691" y="23" key="CommitChangelistDialog2/1440.23.1366.745/0.23.1440.826@1440.23.1366.745" timestamp="1605217842492" />
+    <state x="1691" y="23" key="CommitChangelistDialog2/1440.23.1366.745/0.23.1440.826@1440.23.1366.745" timestamp="1605546185104" />
     <state x="1902" y="105" key="RollbackChangesDialog" timestamp="1605214459306">
       <screen x="1440" y="23" width="1366" height="745" />
     </state>
     <state x="1902" y="105" key="RollbackChangesDialog/1440.23.1366.745/0.23.1440.826@1440.23.1366.745" timestamp="1605214459306" />
-    <state x="1724" y="135" key="Vcs.Push.Dialog.v2" timestamp="1605217850161">
+    <state x="1724" y="135" key="Vcs.Push.Dialog.v2" timestamp="1605546204089">
       <screen x="1440" y="23" width="1366" height="745" />
     </state>
-    <state x="1724" y="135" key="Vcs.Push.Dialog.v2/1440.23.1366.745/0.23.1440.826@1440.23.1366.745" timestamp="1605217850161" />
+    <state x="1724" y="135" key="Vcs.Push.Dialog.v2/1440.23.1366.745/0.23.1440.826@1440.23.1366.745" timestamp="1605546204089" />
     <state x="1831" y="150" width="586" height="490" key="find.popup" timestamp="1605215292192">
       <screen x="1440" y="23" width="1366" height="745" />
     </state>
